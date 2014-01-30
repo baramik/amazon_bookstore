@@ -1,0 +1,521 @@
+  [1m[36m (2.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (2.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBooks (20140105064130)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" varchar(255), "price" float, "books_in_stock" integer, "author_id" integer, "category_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_books_on_author_id" ON "books" ("author_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_books_on_category_id" ON "books" ("category_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105064130"]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCategories (20140105064237)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105064237"]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAuthors (20140105071659)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "authors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "biography" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105071659"]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateRaitings (20140105071915)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "raitings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "review" text, "raiting_number" integer, "book_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_raitings_on_book_id" ON "raitings" ("book_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_raitings_on_customer_id" ON "raitings" ("customer_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105071915"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCustomers (20140105072052)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "firs_tname" varchar(255), "last_name" varchar(255), "credit_card_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_customers_on_credit_card_id" ON "customers" ("credit_card_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105072052"]]
+  [1m[35m (2.2ms)[0m  commit transaction
+Migrating to CreateOrders (20140105072427)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "total_price" float, "completed_date" date, "state" varchar(255), "credit_card_id" integer, "orders_id" integer, "billing_address_id" integer, "shipping_address_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_orders_on_credit_card_id" ON "orders" ("credit_card_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_orders_on_orders_id" ON "orders" ("orders_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_orders_on_billing_address_id" ON "orders" ("billing_address_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_orders_on_shipping_address_id" ON "orders" ("shipping_address_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105072427"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to CreateOrderItems (20140105072718)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" float, "quiantity" integer, "order_id" integer, "book_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_order_items_on_order_id" ON "order_items" ("order_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_order_items_on_book_id" ON "order_items" ("book_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105072718"]]
+  [1m[35m (1.7ms)[0m  commit transaction
+Migrating to CreateAddresses (20140105072844)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateOrderItems (20140105072718)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (8.0ms)[0m  DROP TABLE "order_items"
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20140105072718'[0m
+  [1m[35m (2.0ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateOrderItems (20140105072718)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" float, "quiantity" integer, "order_id" integer, "book_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_order_items_on_order_id" ON "order_items" ("order_id")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_order_items_on_book_id" ON "order_items" ("book_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105072718"]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAddresses (20140105072844)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar(255), "zipcode" integer, "city" varchar(255), "phone" varchar(255), "country" varchar(255), "country_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_addresses_on_country_id" ON "addresses" ("country_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105072844"]]
+  [1m[35m (32.9ms)[0m  commit transaction
+Migrating to CreateCountries (20140105072917)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105072917"]]
+  [1m[35m (2.1ms)[0m  commit transaction
+Migrating to CreateCreditCards (20140105073134)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" integer, "CVV" integer, "expiration_month" integer, "expiration_year" integer, "first_name" varchar(255), "last_name" varchar(255), "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_credit_cards_on_customer_id" ON "credit_cards" ("customer_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105073134"]]
+  [1m[36m (32.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mBook Load (24.5ms)[0m  [1mSELECT "books".* FROM "books" LIMIT 1[0m
+  [1m[35mBook Load (0.2ms)[0m  SELECT "books".* FROM "books" ORDER BY "books"."id" ASC LIMIT 1
+  [1m[36mBook Load (0.6ms)[0m  [1mSELECT "books".* FROM "books" ORDER BY "books"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (6.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateCreditCards (20140105073134)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (41.7ms)[0m  DROP TABLE "credit_cards"
+  [1m[36mSQL (0.5ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20140105073134'[0m
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (6.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCreditCards (20140105073134)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (13.4ms)[0m  [1mCREATE TABLE "credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" integer, "CVV" integer, "expiration_month" integer, "expiration_year" integer, "first_name" varchar(255), "last_name" varchar(255), "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.3ms)[0m  CREATE INDEX "index_credit_cards_on_customer_id" ON "credit_cards" ("customer_id")
+  [1m[36mSQL (9.8ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105073134"]]
+  [1m[35m (2.6ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mBook Load (0.1ms)[0m  [1mSELECT "books".* FROM "books" ORDER BY "books"."id" ASC LIMIT 1[0m
+  [1m[36mCustomer Load (25.1ms)[0m  [1mSELECT "customers".* FROM "customers"[0m
+  [1m[35mCustomer Load (0.2ms)[0m  SELECT "customers".* FROM "customers"
+  [1m[36mCustomer Load (0.2ms)[0m  [1mSELECT "customers".* FROM "customers"[0m
+  [1m[36m (2.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBooks (20140105064130)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" varchar(255), "price" float, "books_in_stock" integer, "author_id" integer, "category_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_books_on_author_id" ON "books" ("author_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_books_on_category_id" ON "books" ("category_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105064130"]]
+  [1m[36m (2.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCategories (20140105064237)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105064237"]]
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAuthors (20140105071659)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "authors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "biography" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105071659"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateRaitings (20140105071915)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "raitings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "review" text, "raiting_number" integer, "book_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_raitings_on_book_id" ON "raitings" ("book_id")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_raitings_on_customer_id" ON "raitings" ("customer_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105071915"]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCustomers (20140105072052)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "credit_card_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_customers_on_credit_card_id" ON "customers" ("credit_card_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105072052"]]
+  [1m[35m (2.3ms)[0m  commit transaction
+Migrating to CreateOrders (20140105072427)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "total_price" float, "completed_date" date, "state" varchar(255), "credit_card_id" integer, "orders_id" integer, "billing_address_id" integer, "shipping_address_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_orders_on_credit_card_id" ON "orders" ("credit_card_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_orders_on_orders_id" ON "orders" ("orders_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_orders_on_billing_address_id" ON "orders" ("billing_address_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_orders_on_shipping_address_id" ON "orders" ("shipping_address_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105072427"]]
+  [1m[35m (2.0ms)[0m  commit transaction
+Migrating to CreateOrderItems (20140105072718)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" float, "quiantity" integer, "order_id" integer, "book_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_order_items_on_order_id" ON "order_items" ("order_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_order_items_on_book_id" ON "order_items" ("book_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105072718"]]
+  [1m[35m (28.2ms)[0m  commit transaction
+Migrating to CreateAddresses (20140105072844)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar(255), "zipcode" integer, "city" varchar(255), "phone" varchar(255), "country" varchar(255), "country_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_addresses_on_country_id" ON "addresses" ("country_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105072844"]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCountries (20140105072917)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105072917"]]
+  [1m[36m (2.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCreditCards (20140105073134)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" integer, "CVV" integer, "expiration_month" integer, "expiration_year" integer, "first_name" varchar(255), "last_name" varchar(255), "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_credit_cards_on_customer_id" ON "credit_cards" ("customer_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105073134"]]
+  [1m[35m (2.4ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mCustomer Exists (0.2ms)[0m  SELECT 1 AS one FROM "customers" WHERE "customers"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35mCustomer Load (0.3ms)[0m  SELECT "customers".* FROM "customers" ORDER BY "customers"."id" ASC LIMIT 1
+  [1m[36mCustomer Load (0.2ms)[0m  [1mSELECT "customers".* FROM "customers"[0m
+  [1m[35mCustomer Load (0.2ms)[0m  SELECT "customers".* FROM "customers"
+  [1m[36mCustomer Load (0.2ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE "customers"."first_name" = 'Michael'[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mCustomer Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "customers" WHERE "customers"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mCustomer Load (0.3ms)[0m  [1mSELECT "customers".* FROM "customers" WHERE "customers"."name" = 'Michael' LIMIT 1[0m
+SQLite3::SQLException: no such column: customers.name: SELECT  "customers".* FROM "customers"  WHERE "customers"."name" = 'Michael' LIMIT 1
+  [1m[36mCustomer Load (1.7ms)[0m  [1mSELECT "customers".* FROM "customers"[0m
+  [1m[35mCustomer Load (0.2ms)[0m  SELECT "customers".* FROM "customers" ORDER BY "customers"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCustomer Exists (0.2ms)[0m  SELECT 1 AS one FROM "customers" WHERE "customers"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mCustomer Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "customers" WHERE "customers"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCustomer Exists (0.1ms)[0m  SELECT 1 AS one FROM "customers" WHERE "customers"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mCustomer Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "customers" WHERE "customers"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mCustomer Exists (0.2ms)[0m  SELECT 1 AS one FROM "customers" WHERE "customers"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mCountry Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1[0m
+  [1m[35mSQL (56.8ms)[0m  INSERT INTO "countries" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Mon, 20 Jan 2014 19:09:09 UTC +00:00], ["name", "Ukraine"], ["updated_at", Mon, 20 Jan 2014 19:09:09 UTC +00:00]]
+  [1m[36m (2.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mCountry Load (0.2ms)[0m  SELECT "countries".* FROM "countries"
+  [1m[36mCountry Load (0.3ms)[0m  [1mSELECT "countries".* FROM "countries" ORDER BY "countries"."id" ASC LIMIT 1[0m
+  [1m[35mCountry Load (0.2ms)[0m  SELECT "countries".* FROM "countries" WHERE "countries"."name" = 'Ararara'
+  [1m[36mCountry Load (0.2ms)[0m  [1mSELECT "countries".* FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1[0m
+  [1m[35mCountry Load (0.2ms)[0m  SELECT "countries".* FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  DELETE FROM "countries" WHERE "countries"."id" = ?  [["id", 1]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mCountry Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "countries" WHERE ("countries"."name" = 'Ukraine' AND "countries"."id" != 1) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCountry Exists (0.2ms)[0m  SELECT 1 AS one FROM "countries" WHERE ("countries"."name" = 'Ukraine' AND "countries"."id" != 1) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mCountry Load (0.2ms)[0m  SELECT "countries".* FROM "countries"
+  [1m[36mCountry Load (0.2ms)[0m  [1mSELECT "countries".* FROM "countries"[0m
+  [1m[35mCountry Load (0.2ms)[0m  SELECT "countries".* FROM "countries" ORDER BY "countries"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCountry Exists (0.2ms)[0m  SELECT 1 AS one FROM "countries" WHERE ("countries"."name" = 'Ukraine' AND "countries"."id" != 1) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mCountry Load (0.2ms)[0m  SELECT "countries".* FROM "countries" ORDER BY "countries"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCountry Exists (0.2ms)[0m  SELECT 1 AS one FROM "countries" WHERE ("countries"."name" = 'Ukraine' AND "countries"."id" != 1) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mCountry Load (0.2ms)[0m  SELECT "countries".* FROM "countries"
+  [1m[36mCountry Load (0.2ms)[0m  [1mSELECT "countries".* FROM "countries" ORDER BY "countries"."id" ASC LIMIT 1[0m
+  [1m[35mCountry Load (0.2ms)[0m  SELECT "countries".* FROM "countries" ORDER BY "countries"."id" DESC LIMIT 1
+  [1m[36mCountry Load (0.2ms)[0m  [1mSELECT "countries".* FROM "countries" ORDER BY "countries"."id" ASC LIMIT 1[0m
+  [1m[35mCountry Load (0.2ms)[0m  SELECT "countries".* FROM "countries" ORDER BY "countries"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCountry Exists (0.2ms)[0m  SELECT 1 AS one FROM "countries" WHERE "countries"."name" = 'USA' LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "countries" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Mon, 20 Jan 2014 19:46:23 UTC +00:00], ["name", "USA"], ["updated_at", Mon, 20 Jan 2014 19:46:23 UTC +00:00]]
+  [1m[35m (6.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCountry Exists (0.2ms)[0m  SELECT 1 AS one FROM "countries" WHERE ("countries"."name" = 'USA' AND "countries"."id" != 2) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mCountry Load (0.3ms)[0m  SELECT "countries".* FROM "countries" WHERE "countries"."name" = 'USA' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCountry Exists (0.2ms)[0m  SELECT 1 AS one FROM "countries" WHERE ("countries"."name" = 'USA' AND "countries"."id" != 2) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mCountry Load (0.2ms)[0m  SELECT "countries".* FROM "countries" WHERE "countries"."name" = 'USA' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCountry Exists (0.2ms)[0m  SELECT 1 AS one FROM "countries" WHERE ("countries"."name" = 'USA' AND "countries"."id" != 2) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mCountry Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "countries" WHERE ("countries"."name" = 'USA' AND "countries"."id" != 2) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (2.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.5ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBooks (20140105064130)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" varchar(255), "price" float, "books_in_stock" integer, "author_id" integer, "category_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_books_on_author_id" ON "books" ("author_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_books_on_category_id" ON "books" ("category_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105064130"]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCategories (20140105064237)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105064237"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAuthors (20140105071659)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "authors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "biography" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105071659"]]
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateRaitings (20140105071915)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "raitings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "review" text, "raiting_number" integer, "book_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_raitings_on_book_id" ON "raitings" ("book_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_raitings_on_customer_id" ON "raitings" ("customer_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105071915"]]
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCustomers (20140105072052)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "credit_card_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_customers_on_credit_card_id" ON "customers" ("credit_card_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105072052"]]
+  [1m[35m (2.3ms)[0m  commit transaction
+Migrating to CreateOrders (20140105072427)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "total_price" float, "completed_date" date, "state" varchar(255), "credit_card_id" integer, "orders_id" integer, "billing_address_id" integer, "shipping_address_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_orders_on_credit_card_id" ON "orders" ("credit_card_id")[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_orders_on_orders_id" ON "orders" ("orders_id")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_orders_on_billing_address_id" ON "orders" ("billing_address_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_orders_on_shipping_address_id" ON "orders" ("shipping_address_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105072427"]]
+  [1m[35m (2.1ms)[0m  commit transaction
+Migrating to CreateOrderItems (20140105072718)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" float, "quiantity" integer, "order_id" integer, "book_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_order_items_on_order_id" ON "order_items" ("order_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_order_items_on_book_id" ON "order_items" ("book_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105072718"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+Migrating to CreateAddresses (20140105072844)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar(255), "zipcode" integer, "city" varchar(255), "phone" varchar(255), "country" varchar(255), "country_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_addresses_on_country_id" ON "addresses" ("country_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105072844"]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCountries (20140105072917)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105072917"]]
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCreditCards (20140105073134)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" integer, "CVV" integer, "expiration_month" integer, "expiration_year" integer, "first_name" varchar(255), "last_name" varchar(255), "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_credit_cards_on_customer_id" ON "credit_cards" ("customer_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105073134"]]
+  [1m[35m (1.7ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mCustomer Load (40.9ms)[0m  [1mSELECT "customers".* FROM "customers"[0m
+  [1m[36mCredit_Card Load (2.2ms)[0m  [1mSELECT "credit_cards".* FROM "credit_cards"[0m
+  [1m[35m (283.4ms)[0m  SELECT COUNT(*) FROM "credit_cards"
+  [1m[36mOrderItem Load (0.1ms)[0m  [1mSELECT "order_items".* FROM "order_items" WHERE ('price') LIMIT 1[0m
+  [1m[35mOrderItem Load (0.2ms)[0m  SELECT "order_items".* FROM "order_items" WHERE ('price') LIMIT 1
+  [1m[36mOrder Load (18.9ms)[0m  [1mSELECT "orders".* FROM "orders"[0m
+  [1m[35mOrder Load (0.3ms)[0m  SELECT "orders".* FROM "orders" WHERE "orders"."status" = 'completed' LIMIT 1
+SQLite3::SQLException: no such column: orders.status: SELECT  "orders".* FROM "orders"  WHERE "orders"."status" = 'completed' LIMIT 1
+  [1m[36mOrder Load (0.2ms)[0m  [1mSELECT "orders".* FROM "orders" WHERE "orders"."state" = 'completed' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35mOrder Load (289.6ms)[0m  SELECT "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT 1
+  [1m[36mOrder Load (0.3ms)[0m  [1mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" ASC LIMIT 1[0m
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mOrder Load (6.1ms)[0m  [1mSELECT "orders".* FROM "orders"[0m
+  [1m[35mOrder Load (0.2ms)[0m  SELECT "orders".* FROM "orders"
+  [1m[36mOrder Load (11.0ms)[0m  [1mSELECT "orders".* FROM "orders" WHERE "orders"."state" = 'deslined'[0m
+DEPRECATION WARNING: Relation#all is deprecated. If you want to eager-load a relation, you can call #load (e.g. `Post.where(published: true).load`). If you want to get an array of records from a relation, you can call #to_a (e.g. `Post.where(published: true).to_a`). (called from irb_binding at (irb):9)
+  [1m[35mOrder Load (301.4ms)[0m  SELECT "orders".* FROM "orders"
+DEPRECATION WARNING: Relation#all is deprecated. If you want to eager-load a relation, you can call #load (e.g. `Post.where(published: true).load`). If you want to get an array of records from a relation, you can call #to_a (e.g. `Post.where(published: true).to_a`). (called from irb_binding at (irb):13)
+  [1m[36mOrder Load (0.3ms)[0m  [1mSELECT "orders".* FROM "orders"[0m
+  [1m[35mOrder Load (0.3ms)[0m  SELECT "orders".* FROM "orders"
+  [1m[36mOrder Load (0.2ms)[0m  [1mSELECT "orders".* FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id"[0m
+  [1m[35m (0.2ms)[0m  SELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id"
+  [1m[36m (0.3ms)[0m  [1mSELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id"[0m
+  [1m[35m (0.3ms)[0m  SELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id"
+  [1m[36m (0.3ms)[0m  [1mSELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id"[0m
+  [1m[35m (0.3ms)[0m  SELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id"
+  [1m[36m (0.3ms)[0m  [1mSELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id"[0m
+  [1m[36m (2.8ms)[0m  [1mCREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar(255), "zipcode" integer, "city" varchar(255), "phone" varchar(255), "country" varchar(255), "country_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.6ms)[0m  CREATE INDEX "index_addresses_on_country_id" ON "addresses" ("country_id")
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "authors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "biography" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" varchar(255), "price" float, "books_in_stock" integer, "author_id" integer, "category_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.5ms)[0m  [1mCREATE INDEX "index_books_on_author_id" ON "books" ("author_id")[0m
+  [1m[35m (1.4ms)[0m  CREATE INDEX "index_books_on_category_id" ON "books" ("category_id")
+  [1m[36m (2.0ms)[0m  [1mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" integer, "CVV" integer, "expiration_month" integer, "expiration_year" integer, "first_name" varchar(255), "last_name" varchar(255), "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.7ms)[0m  CREATE INDEX "index_credit_cards_on_customer_id" ON "credit_cards" ("customer_id")
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "credit_card_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.8ms)[0m  CREATE INDEX "index_customers_on_credit_card_id" ON "customers" ("credit_card_id")
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" float, "quiantity" integer, "order_id" integer, "book_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.5ms)[0m  CREATE INDEX "index_order_items_on_book_id" ON "order_items" ("book_id")
+  [1m[36m (1.5ms)[0m  [1mCREATE INDEX "index_order_items_on_order_id" ON "order_items" ("order_id")[0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "total_price" float, "completed_date" date, "state" varchar(255), "credit_card_id" integer, "orders_id" integer, "billing_address_id" integer, "shipping_address_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.4ms)[0m  [1mCREATE INDEX "index_orders_on_billing_address_id" ON "orders" ("billing_address_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE INDEX "index_orders_on_credit_card_id" ON "orders" ("credit_card_id")
+  [1m[36m (1.3ms)[0m  [1mCREATE INDEX "index_orders_on_orders_id" ON "orders" ("orders_id")[0m
+  [1m[35m (1.4ms)[0m  CREATE INDEX "index_orders_on_shipping_address_id" ON "orders" ("shipping_address_id")
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "raitings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "review" text, "raiting_number" integer, "book_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.7ms)[0m  CREATE INDEX "index_raitings_on_book_id" ON "raitings" ("book_id")
+  [1m[36m (2.1ms)[0m  [1mCREATE INDEX "index_raitings_on_customer_id" ON "raitings" ("customer_id")[0m
+  [1m[35m (2.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (3.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140105073134')[0m
+  [1m[35m (3.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140105064130')
+  [1m[36m (1.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140105064237')[0m
+  [1m[35m (7.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140105071659')
+  [1m[36m (2.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140105071915')[0m
+  [1m[35m (2.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140105072052')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140105072427')[0m
+  [1m[35m (1.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140105072718')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140105072844')[0m
+  [1m[35m (1.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140105072917')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (2.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.7ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBooks (20140105064130)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" varchar(255), "price" float, "books_in_stock" integer, "author_id" integer, "category_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_books_on_author_id" ON "books" ("author_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_books_on_category_id" ON "books" ("category_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105064130"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCategories (20140105064237)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105064237"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAuthors (20140105071659)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "authors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "biography" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105071659"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateRaitings (20140105071915)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "raitings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "review" text, "raiting_number" integer, "book_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_raitings_on_book_id" ON "raitings" ("book_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_raitings_on_customer_id" ON "raitings" ("customer_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105071915"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCustomers (20140105072052)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "credit_card_id" integer, "order_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.3ms)[0m  CREATE INDEX "index_customers_on_credit_card_id" ON "customers" ("credit_card_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_customers_on_order_id" ON "customers" ("order_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105072052"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateOrders (20140105072427)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "total_price" float, "completed_date" date, "state" varchar(255), "credit_card_id" integer, "orders_id" integer, "billing_address_id" integer, "shipping_address_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_orders_on_credit_card_id" ON "orders" ("credit_card_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_orders_on_orders_id" ON "orders" ("orders_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_orders_on_billing_address_id" ON "orders" ("billing_address_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_orders_on_shipping_address_id" ON "orders" ("shipping_address_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105072427"]]
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateOrderItems (20140105072718)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" float, "quiantity" integer, "order_id" integer, "book_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_order_items_on_order_id" ON "order_items" ("order_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_order_items_on_book_id" ON "order_items" ("book_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105072718"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAddresses (20140105072844)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar(255), "zipcode" integer, "city" varchar(255), "phone" varchar(255), "country" varchar(255), "country_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_addresses_on_country_id" ON "addresses" ("country_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105072844"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to CreateCountries (20140105072917)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140105072917"]]
+  [1m[35m (1.9ms)[0m  commit transaction
+Migrating to CreateCreditCards (20140105073134)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" integer, "CVV" integer, "expiration_month" integer, "expiration_year" integer, "first_name" varchar(255), "last_name" varchar(255), "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_credit_cards_on_customer_id" ON "credit_cards" ("customer_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140105073134"]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (85.5ms)[0m  [1mDROP TABLE "addresses"[0m
+  [1m[35m (25.4ms)[0m  CREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar(255), "zipcode" integer, "city" varchar(255), "phone" varchar(255), "country" varchar(255), "country_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (5.0ms)[0m  [1mCREATE INDEX "index_addresses_on_country_id" ON "addresses" ("country_id")[0m
+  [1m[35m (4.0ms)[0m  DROP TABLE "authors"
+  [1m[36m (4.6ms)[0m  [1mCREATE TABLE "authors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "biography" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (3.2ms)[0m  DROP TABLE "books"
+  [1m[36m (3.9ms)[0m  [1mCREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" varchar(255), "price" float, "books_in_stock" integer, "author_id" integer, "category_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (3.9ms)[0m  CREATE INDEX "index_books_on_author_id" ON "books" ("author_id")
+  [1m[36m (3.5ms)[0m  [1mCREATE INDEX "index_books_on_category_id" ON "books" ("category_id")[0m
+  [1m[35m (4.4ms)[0m  DROP TABLE "categories"
+  [1m[36m (4.4ms)[0m  [1mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (4.1ms)[0m  DROP TABLE "countries"
+  [1m[36m (4.1ms)[0m  [1mCREATE TABLE "countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (4.3ms)[0m  DROP TABLE "credit_cards"
+  [1m[36m (4.7ms)[0m  [1mCREATE TABLE "credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" integer, "CVV" integer, "expiration_month" integer, "expiration_year" integer, "first_name" varchar(255), "last_name" varchar(255), "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (3.6ms)[0m  CREATE INDEX "index_credit_cards_on_customer_id" ON "credit_cards" ("customer_id")
+  [1m[36m (3.2ms)[0m  [1mDROP TABLE "customers"[0m
+  [1m[35m (2.3ms)[0m  CREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "credit_card_id" integer, "order_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (3.0ms)[0m  [1mCREATE INDEX "index_customers_on_credit_card_id" ON "customers" ("credit_card_id")[0m
+  [1m[35m (2.3ms)[0m  CREATE INDEX "index_customers_on_order_id" ON "customers" ("order_id")
+  [1m[36m (2.1ms)[0m  [1mDROP TABLE "order_items"[0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" float, "quiantity" integer, "order_id" integer, "book_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (7.4ms)[0m  [1mCREATE INDEX "index_order_items_on_book_id" ON "order_items" ("book_id")[0m
+  [1m[35m (10.6ms)[0m  CREATE INDEX "index_order_items_on_order_id" ON "order_items" ("order_id")
+  [1m[36m (11.9ms)[0m  [1mDROP TABLE "orders"[0m
+  [1m[35m (2.5ms)[0m  CREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "total_price" float, "completed_date" date, "state" varchar(255), "credit_card_id" integer, "orders_id" integer, "billing_address_id" integer, "shipping_address_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (2.2ms)[0m  [1mCREATE INDEX "index_orders_on_billing_address_id" ON "orders" ("billing_address_id")[0m
+  [1m[35m (9.2ms)[0m  CREATE INDEX "index_orders_on_credit_card_id" ON "orders" ("credit_card_id")
+  [1m[36m (12.1ms)[0m  [1mCREATE INDEX "index_orders_on_orders_id" ON "orders" ("orders_id")[0m
+  [1m[35m (7.3ms)[0m  CREATE INDEX "index_orders_on_shipping_address_id" ON "orders" ("shipping_address_id")
+  [1m[36m (13.3ms)[0m  [1mDROP TABLE "raitings"[0m
+  [1m[35m (21.7ms)[0m  CREATE TABLE "raitings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "review" text, "raiting_number" integer, "book_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (25.4ms)[0m  [1mCREATE INDEX "index_raitings_on_book_id" ON "raitings" ("book_id")[0m
+  [1m[35m (21.3ms)[0m  CREATE INDEX "index_raitings_on_customer_id" ON "raitings" ("customer_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mOrder Load (1.7ms)[0m  [1mSELECT "orders".* FROM "orders" LIMIT 1[0m
+  [1m[35mOrder Load (0.3ms)[0m  SELECT "orders".* FROM "orders"
+  [1m[36m (0.2ms)[0m  [1mSELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id" WHERE (id = 1)[0m
+SQLite3::SQLException: ambiguous column name: id: SELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id" WHERE (id = 1)
+  [1m[36m (0.2ms)[0m  [1mSELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id" WHERE (id = 1)[0m
+SQLite3::SQLException: ambiguous column name: id: SELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id" WHERE (id = 1)
+  [1m[36m (0.2ms)[0m  [1mSELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id" WHERE (id = 1)[0m
+SQLite3::SQLException: ambiguous column name: id: SELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id" WHERE (id = 1)
+  [1m[36m (0.2ms)[0m  [1mSELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id" WHERE (orders_items.id = 1)[0m
+SQLite3::SQLException: no such column: orders_items.id: SELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id" WHERE (orders_items.id = 1)
+  [1m[36m (0.2ms)[0m  [1mSELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id" WHERE (orders_items.order_id = 1)[0m
+SQLite3::SQLException: no such column: orders_items.order_id: SELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id" WHERE (orders_items.order_id = 1)
+  [1m[35m (0.2ms)[0m  SELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id" WHERE (orders_items.order_id = 1)
+SQLite3::SQLException: no such column: orders_items.order_id: SELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id" WHERE (orders_items.order_id = 1)
+  [1m[36m (0.2ms)[0m  [1mSELECT SUM(price) AS sum_id FROM "orders" INNER JOIN "order_items" ON "order_items"."order_id" = "orders"."id" WHERE (orders.id = 1)[0m
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT("books"."books_in_stock") FROM "books"[0m
+  [1m[35m (0.2ms)[0m  SELECT SUM("books"."books_in_stock") AS sum_id FROM "books"
+  [1m[36m (0.2ms)[0m  [1mSELECT SUM("books"."books_in_stock") AS sum_id FROM "books"[0m
+  [1m[35m (0.2ms)[0m  SELECT SUM("books"."books_in_stock") AS sum_id FROM "books"
+  [1m[36mBook Load (0.1ms)[0m  [1mSELECT authors.first_name FROM "books" INNER JOIN "authors" ON "authors"."id" = "books"."author_id" WHERE "books"."id" = 1[0m
+  [1m[35mBook Load (0.2ms)[0m  SELECT authors.first_name, authors.last_name FROM "books" INNER JOIN "authors" ON "authors"."id" = "books"."author_id" WHERE "books"."id" = 1
