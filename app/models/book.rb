@@ -8,7 +8,7 @@ class Book < ActiveRecord::Base
 	validates :books_in_stock, numericality: {only_integer: true}
 
 	def search_author
-		self.select('authors.first_name','authors.last_name').joins(:author).where('id = ?', self.id);
+		self.select('authors.first_name','authors.last_name').joins(:author).where('id = ?', self.id)
 	end
 
 	def decrease_in_stock(num)
