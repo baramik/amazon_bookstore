@@ -22,7 +22,7 @@ class Book < ActiveRecord::Base
 	end
 
 	def book_instock_count
-		self.sum(:books_in_stock).where()	
+		self.sum(:books_in_stock).where('id = ?', self.id)	
 	end
 
 	def get_raiting
