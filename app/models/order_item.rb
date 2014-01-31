@@ -5,12 +5,12 @@ class OrderItem < ActiveRecord::Base
 	validates :price, :quiantity, presence: true 
 	validates :quiantity, numericality: {only_integer: true}
 
-	def decrease_quantity(num)
+	def decrease_quantity num
 		self.quiantity -= num
 		save!
 	end
 
-	def increase_count(num)
+	def increase_count num
 		self.quiantity += num
 		save!
  	end

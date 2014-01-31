@@ -519,3 +519,41 @@ SQLite3::SQLException: no such column: orders_items.order_id: SELECT SUM(price) 
   [1m[35m (0.2ms)[0m  SELECT SUM("books"."books_in_stock") AS sum_id FROM "books"
   [1m[36mBook Load (0.1ms)[0m  [1mSELECT authors.first_name FROM "books" INNER JOIN "authors" ON "authors"."id" = "books"."author_id" WHERE "books"."id" = 1[0m
   [1m[35mBook Load (0.2ms)[0m  SELECT authors.first_name, authors.last_name FROM "books" INNER JOIN "authors" ON "authors"."id" = "books"."author_id" WHERE "books"."id" = 1
+  [1m[36m (2.7ms)[0m  [1mCREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar(255), "zipcode" integer, "city" varchar(255), "phone" varchar(255), "country" varchar(255), "country_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (2.2ms)[0m  CREATE INDEX "index_addresses_on_country_id" ON "addresses" ("country_id")
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "authors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "biography" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" varchar(255), "price" float, "books_in_stock" integer, "author_id" integer, "category_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.4ms)[0m  [1mCREATE INDEX "index_books_on_author_id" ON "books" ("author_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE INDEX "index_books_on_category_id" ON "books" ("category_id")
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (2.2ms)[0m  CREATE TABLE "countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" integer, "CVV" integer, "expiration_month" integer, "expiration_year" integer, "first_name" varchar(255), "last_name" varchar(255), "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.3ms)[0m  CREATE INDEX "index_credit_cards_on_customer_id" ON "credit_cards" ("customer_id")
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "credit_card_id" integer, "order_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.3ms)[0m  CREATE INDEX "index_customers_on_credit_card_id" ON "customers" ("credit_card_id")
+  [1m[36m (1.4ms)[0m  [1mCREATE INDEX "index_customers_on_order_id" ON "customers" ("order_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" float, "quiantity" integer, "order_id" integer, "book_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.5ms)[0m  [1mCREATE INDEX "index_order_items_on_book_id" ON "order_items" ("book_id")[0m
+  [1m[35m (1.5ms)[0m  CREATE INDEX "index_order_items_on_order_id" ON "order_items" ("order_id")
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "total_price" float, "completed_date" date, "state" varchar(255), "credit_card_id" integer, "orders_id" integer, "billing_address_id" integer, "shipping_address_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.5ms)[0m  CREATE INDEX "index_orders_on_billing_address_id" ON "orders" ("billing_address_id")
+  [1m[36m (1.4ms)[0m  [1mCREATE INDEX "index_orders_on_credit_card_id" ON "orders" ("credit_card_id")[0m
+  [1m[35m (1.4ms)[0m  CREATE INDEX "index_orders_on_orders_id" ON "orders" ("orders_id")
+  [1m[36m (1.4ms)[0m  [1mCREATE INDEX "index_orders_on_shipping_address_id" ON "orders" ("shipping_address_id")[0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "raitings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "review" text, "raiting_number" integer, "book_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.5ms)[0m  [1mCREATE INDEX "index_raitings_on_book_id" ON "raitings" ("book_id")[0m
+  [1m[35m (1.7ms)[0m  CREATE INDEX "index_raitings_on_customer_id" ON "raitings" ("customer_id")
+  [1m[36m (3.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (7.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140105073134')
+  [1m[36m (2.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140105064130')[0m
+  [1m[35m (1.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140105064237')
+  [1m[36m (1.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140105071659')[0m
+  [1m[35m (1.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140105071915')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140105072052')[0m
+  [1m[35m (1.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140105072427')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140105072718')[0m
+  [1m[35m (1.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140105072844')
+  [1m[36m (1.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140105072917')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
