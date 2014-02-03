@@ -6,6 +6,6 @@ FactoryGirl.define do
     zipcode Faker::Address.zip_code
     city Faker::Address.city
     phone Faker::PhoneNumber.phone_number
-    country Faker::Address.country
+    country #"Ukraine"#Faker::Address.country
   end
 end
