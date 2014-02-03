@@ -1,7 +1,7 @@
 class Book < ActiveRecord::Base
 	belongs_to :category
 	belongs_to :author
-	has_many :ratings
+	has_many :raitings
 
 	validates :title, presence: true
 	validates :price, numericality: {greater_than_or_equal: 0}
@@ -26,8 +26,8 @@ class Book < ActiveRecord::Base
 	end
 
 	def get_raiting
-		rate = Raiting.sum(:raiting_number).where("book_id = ?", id)
-		rate_count = Raiting.count(:raiting_number).where("book_id = ?", id)
+		rate = Raiting.sum(:raiting_number).where('book_id = ?', id)
+		rate_count = Raiting.count(:raiting_number).where('book_id = ?', id)
 		total_rate = rate / rate_count unless rate.empty? && rate_count.empty?
 	end
 

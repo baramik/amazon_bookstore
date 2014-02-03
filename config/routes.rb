@@ -1,45 +1,11 @@
 Models::Application.routes.draw do
-  get "categories/new"
-  get "categories/create"
-  get "categories/update"
-  get "categories/delete"
-  get "countries/new"
-  get "countries/create"
-  get "countries/update"
-  get "countries/delete"
-  get "order_items/new"
-  get "order_items/create"
-  get "order_items/update"
-  get "order_items/delete"
-  get "orders/new"
-  get "orders/create"
-  get "orders/update"
-  get "orders/delete"
-  get "addresses/create"
-  get "addresses/update"
-  get "customers/new"
-  get "customers/create"
-  get "customers/update"
-  get "customers/delete"
-  get "raitings/new"
-  get "raitings/create"
-  get "raitings/update"
-  get "raitings/delete"
-  get "credit_cards/new"
-  get "credit_cards/create"
-  get "credit_cards/update"
-  get "credit_cards/delete"
-  get "books/new"
-  get "books/create"
-  get "books/update"
-  get "books/delete"
-  get "authors/new"
-  get "authors/create"
-  get "authors/update"
-  get "authors/delete"
-  get "addresses/new"
-  get "addresses/createupdate"
-  get "addresses/delete"
+ resources :books, path_names: {show: "sho", new: "nu"} do
+   member do
+     get 'show'
+     get 'new'
+   end
+ end
+ root to: "books#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
