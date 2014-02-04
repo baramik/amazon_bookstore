@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105073134) do
+ActiveRecord::Schema.define(version: 20140204125456) do
 
   create_table "addresses", force: true do |t|
     t.string   "address"
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(version: 20140105073134) do
 
   add_index "books", ["author_id"], name: "index_books_on_author_id"
   add_index "books", ["category_id"], name: "index_books_on_category_id"
+
+  create_table "books_order_items", id: false, force: true do |t|
+    t.integer "book_id",       null: false
+    t.integer "order_item_id", null: false
+  end
+
+  add_index "books_order_items", ["book_id"], name: "index_books_order_items_on_book_id"
+  add_index "books_order_items", ["order_item_id"], name: "index_books_order_items_on_order_item_id"
 
   create_table "categories", force: true do |t|
     t.string   "title"

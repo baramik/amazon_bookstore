@@ -1,4 +1,4 @@
-class Credit_Card < ActiveRecord::Base
+class CreditCard < ActiveRecord::Base
 	belongs_to :customer
 	has_many :orders
 	

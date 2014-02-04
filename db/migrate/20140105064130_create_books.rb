@@ -9,6 +9,7 @@ class CreateBooks < ActiveRecord::Migration
       t.references :category, index: true
       t.timestamps
     end
+
   end
   def down
     drop_table :books  

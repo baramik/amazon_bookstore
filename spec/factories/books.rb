@@ -5,6 +5,6 @@ FactoryGirl.define do
     title "BookTitle"
     description "BookDescription"
     price "9.99"
-    in_stock 1
+    books_in_stock 1
   end
 end
