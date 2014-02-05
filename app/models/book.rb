@@ -1,11 +1,10 @@
 class Book < ActiveRecord::Base
 	belongs_to :category
 	belongs_to :author
-  has_and_belongs_to_many :order_items
-
+  has_many :order_items
 	has_many :raitings
 
-	validates :title, presence: true
+	validates :title, presence: true, uniqueness: true
 	validates :price, numericality: {greater_than: 0}
 	validates :books_in_stock, numericality: {only_integer: true}
 

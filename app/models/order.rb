@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
 	  belongs_to :billing_address, class_name: Address
   	belongs_to :shipping_address, class_name: Address
   	has_many :order_items, dependent: :destroy
+    has_one :shipment
 
   	validates :total_price, numericality: {only_integer: false}
   	validates :completed_date, numericality: {only_integer: true} 

@@ -18,8 +18,8 @@ let(:author){FactoryGirl.create(:author, id: 1)}
   end
 
   before(:each) do
-    @book1 = FactoryGirl.create(:book, author_id: author.id)
-    @book2 = FactoryGirl.create(:book, author_id: author.id)
+    @book1 = FactoryGirl.create(:book, title: "Barabushka", author_id: author.id)
+    @book2 = FactoryGirl.create(:book, title: "Babushka", author_id: author.id)
   end
 
   context '#number_books' do

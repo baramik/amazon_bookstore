@@ -15041,3 +15041,624 @@ Migrating to CreateJoinTableBookOrderItem (20140204125456)
   [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 80889 LIMIT 1[0m
   [1m[35mSQL (0.2ms)[0m  INSERT INTO "addresses" ("address", "city", "country_id", "created_at", "phone", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?)  [["address", "1129 Annalise Fields"], ["city", "Parisianbury"], ["country_id", 1], ["created_at", Wed, 05 Feb 2014 10:24:25 UTC +00:00], ["phone", "1-392-612-0250 x0200"], ["updated_at", Wed, 05 Feb 2014 10:24:25 UTC +00:00], ["zipcode", 80889]]
   [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (2.8ms)[0m  DELETE FROM "books";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'books';
+  [1m[36m (2.7ms)[0m  [1mDELETE FROM "categories";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'categories';[0m
+  [1m[35m (2.1ms)[0m  DELETE FROM "authors";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'authors';
+  [1m[36m (1.9ms)[0m  [1mDELETE FROM "raitings";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'raitings';[0m
+  [1m[35m (1.8ms)[0m  DELETE FROM "customers";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'customers';
+  [1m[36m (2.5ms)[0m  [1mDELETE FROM "orders";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'orders';[0m
+  [1m[35m (1.6ms)[0m  DELETE FROM "order_items";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'order_items';
+  [1m[36m (1.4ms)[0m  [1mDELETE FROM "addresses";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'addresses';[0m
+  [1m[35m (1.2ms)[0m  DELETE FROM "countries";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'countries';
+  [1m[36m (1.4ms)[0m  [1mDELETE FROM "credit_cards";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'credit_cards';[0m
+  [1m[35m (1.6ms)[0m  DELETE FROM "books_order_items";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'books_order_items';
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (86.3ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Orrin"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Orrin"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Orrin"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Orrin"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Orrin"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Orrin"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "authors" WHERE (id = 1)[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["books_in_stock", 3], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35m (1.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" IS NULL AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" IS NULL AND "books"."id" != 1) LIMIT 1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[35mBook Load (0.1ms)[0m  SELECT "books".* FROM "books" ORDER BY "books"."id" ASC LIMIT 1
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36m (2.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "hby"], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "DuBuque"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35mBook Exists (0.2ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35m (1.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mCountry Exists (0.1ms)[0m  SELECT 1 AS one FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "countries" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["name", "Ukraine"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 24025 LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "addresses" ("address", "city", "country_id", "created_at", "phone", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["address", "77624 Johnnie Ridge"], ["city", "North Sylvanmouth"], ["country_id", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["phone", "1-955-723-4375"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["zipcode", 24025]]
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE ("addresses"."zipcode" IS NULL AND "addresses"."id" != 1) LIMIT 1
+  [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE ("addresses"."zipcode" IS NULL AND "addresses"."id" != 1) LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCountry Exists (0.2ms)[0m  SELECT 1 AS one FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "countries" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["name", "Ukraine"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 24025 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "addresses" ("address", "city", "country_id", "created_at", "phone", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["address", "77624 Johnnie Ridge"], ["city", "North Sylvanmouth"], ["country_id", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["phone", "1-955-723-4375"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["zipcode", 24025]]
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE ("addresses"."zipcode" = 24025 AND "addresses"."id" != 1) LIMIT 1
+  [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE ("addresses"."zipcode" = 24025 AND "addresses"."id" != 1) LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCountry Exists (0.2ms)[0m  SELECT 1 AS one FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "countries" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["name", "Ukraine"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 24025 LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "addresses" ("address", "city", "country_id", "created_at", "phone", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["address", "77624 Johnnie Ridge"], ["city", "North Sylvanmouth"], ["country_id", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["phone", "1-955-723-4375"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["zipcode", 24025]]
+  [1m[35mAddress Load (0.2ms)[0m  SELECT "addresses".* FROM "addresses" ORDER BY "addresses"."id" ASC LIMIT 1
+  [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 24025 LIMIT 1[0m
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 24025 LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mCountry Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "countries" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["name", "Ukraine"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00]]
+  [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 24025 LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "addresses" ("address", "city", "country_id", "created_at", "phone", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?)  [["address", "77624 Johnnie Ridge"], ["city", "North Sylvanmouth"], ["country_id", 1], ["created_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["phone", "1-955-723-4375"], ["updated_at", Wed, 05 Feb 2014 15:26:41 UTC +00:00], ["zipcode", 24025]]
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (2.5ms)[0m  DELETE FROM "books";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'books';
+  [1m[36m (1.8ms)[0m  [1mDELETE FROM "categories";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'categories';[0m
+  [1m[35m (3.4ms)[0m  DELETE FROM "authors";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'authors';
+  [1m[36m (2.0ms)[0m  [1mDELETE FROM "raitings";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'raitings';[0m
+  [1m[35m (1.4ms)[0m  DELETE FROM "customers";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'customers';
+  [1m[36m (1.5ms)[0m  [1mDELETE FROM "orders";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'orders';[0m
+  [1m[35m (1.8ms)[0m  DELETE FROM "order_items";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'order_items';
+  [1m[36m (3.3ms)[0m  [1mDELETE FROM "addresses";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'addresses';[0m
+  [1m[35m (4.3ms)[0m  DELETE FROM "countries";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'countries';
+  [1m[36m (3.8ms)[0m  [1mDELETE FROM "credit_cards";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'credit_cards';[0m
+  [1m[35m (2.3ms)[0m  DELETE FROM "books_order_items";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'books_order_items';
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (41.9ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Easter"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Easter"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35m (1.5ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Easter"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35m (1.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Easter"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35m (2.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Easter"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35m (1.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Easter"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35m (2.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "authors" WHERE (id = 1)[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1
+  [1m[36m (5.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" IS NULL AND "books"."id" != 1) LIMIT 1
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" IS NULL AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35m (2.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Load (0.1ms)[0m  [1mSELECT "books".* FROM "books" ORDER BY "books"."id" ASC LIMIT 1[0m
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35m (123.9ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1
+  [1m[36m (32.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[35mBook Exists (0.2ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36m (1.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["books_in_stock", 3], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mBook Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "books" SET "books_in_stock" = ?, "updated_at" = ? WHERE "books"."id" = 1  [["books_in_stock", 2], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36m (0.9ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "xpu"], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Feil"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[35m (2.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCountry Exists (0.2ms)[0m  SELECT 1 AS one FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "countries" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["name", "Ukraine"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 11861 LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "addresses" ("address", "city", "country_id", "created_at", "phone", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["address", "11666 Lexi Isle"], ["city", "Collinshire"], ["country_id", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["phone", "773-784-1635"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["zipcode", 11861]]
+  [1m[35mAddress Load (0.1ms)[0m  SELECT "addresses".* FROM "addresses" ORDER BY "addresses"."id" ASC LIMIT 1
+  [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 11861 LIMIT 1[0m
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 11861 LIMIT 1
+  [1m[36m (2.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mCountry Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "countries" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["name", "Ukraine"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00]]
+  [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 11861 LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "addresses" ("address", "city", "country_id", "created_at", "phone", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?)  [["address", "11666 Lexi Isle"], ["city", "Collinshire"], ["country_id", 1], ["created_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["phone", "773-784-1635"], ["updated_at", Wed, 05 Feb 2014 15:27:09 UTC +00:00], ["zipcode", 11861]]
+  [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE ("addresses"."zipcode" IS NULL AND "addresses"."id" != 1) LIMIT 1[0m
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE ("addresses"."zipcode" IS NULL AND "addresses"."id" != 1) LIMIT 1
+  [1m[36m (2.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mCountry Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "countries" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Wed, 05 Feb 2014 15:27:10 UTC +00:00], ["name", "Ukraine"], ["updated_at", Wed, 05 Feb 2014 15:27:10 UTC +00:00]]
+  [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 11861 LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "addresses" ("address", "city", "country_id", "created_at", "phone", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?)  [["address", "11666 Lexi Isle"], ["city", "Collinshire"], ["country_id", 1], ["created_at", Wed, 05 Feb 2014 15:27:10 UTC +00:00], ["phone", "773-784-1635"], ["updated_at", Wed, 05 Feb 2014 15:27:10 UTC +00:00], ["zipcode", 11861]]
+  [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE ("addresses"."zipcode" = 11861 AND "addresses"."id" != 1) LIMIT 1[0m
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE ("addresses"."zipcode" = 11861 AND "addresses"."id" != 1) LIMIT 1
+  [1m[36m (2.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mCountry Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "countries" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Wed, 05 Feb 2014 15:27:10 UTC +00:00], ["name", "Ukraine"], ["updated_at", Wed, 05 Feb 2014 15:27:10 UTC +00:00]]
+  [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 11861 LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "addresses" ("address", "city", "country_id", "created_at", "phone", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?)  [["address", "11666 Lexi Isle"], ["city", "Collinshire"], ["country_id", 1], ["created_at", Wed, 05 Feb 2014 15:27:10 UTC +00:00], ["phone", "773-784-1635"], ["updated_at", Wed, 05 Feb 2014 15:27:10 UTC +00:00], ["zipcode", 11861]]
+  [1m[36m (1.8ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (2.7ms)[0m  DELETE FROM "books";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'books';
+  [1m[36m (1.8ms)[0m  [1mDELETE FROM "categories";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'categories';[0m
+  [1m[35m (1.6ms)[0m  DELETE FROM "authors";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'authors';
+  [1m[36m (2.0ms)[0m  [1mDELETE FROM "raitings";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'raitings';[0m
+  [1m[35m (1.4ms)[0m  DELETE FROM "customers";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'customers';
+  [1m[36m (1.5ms)[0m  [1mDELETE FROM "orders";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'orders';[0m
+  [1m[35m (1.3ms)[0m  DELETE FROM "order_items";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'order_items';
+  [1m[36m (1.3ms)[0m  [1mDELETE FROM "addresses";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'addresses';[0m
+  [1m[35m (1.2ms)[0m  DELETE FROM "countries";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'countries';
+  [1m[36m (2.2ms)[0m  [1mDELETE FROM "credit_cards";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'credit_cards';[0m
+  [1m[35m (1.8ms)[0m  DELETE FROM "books_order_items";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'books_order_items';
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mCountry Exists (0.1ms)[0m  SELECT 1 AS one FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1
+  [1m[36mSQL (62.0ms)[0m  [1mINSERT INTO "countries" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Wed, 05 Feb 2014 15:29:22 UTC +00:00], ["name", "Ukraine"], ["updated_at", Wed, 05 Feb 2014 15:29:22 UTC +00:00]]
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 89990 LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "addresses" ("address", "city", "country_id", "created_at", "phone", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["address", "186 Ottis Stravenue"], ["city", "West Leilanifort"], ["country_id", 1], ["created_at", Wed, 05 Feb 2014 15:29:22 UTC +00:00], ["phone", "811-726-2804 x3199"], ["updated_at", Wed, 05 Feb 2014 15:29:22 UTC +00:00], ["zipcode", 89990]]
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE ("addresses"."zipcode" IS NULL AND "addresses"."id" != 1) LIMIT 1
+  [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE ("addresses"."zipcode" IS NULL AND "addresses"."id" != 1) LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mCountry Exists (0.1ms)[0m  SELECT 1 AS one FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "countries" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Wed, 05 Feb 2014 15:29:22 UTC +00:00], ["name", "Ukraine"], ["updated_at", Wed, 05 Feb 2014 15:29:22 UTC +00:00]]
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 89990 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "addresses" ("address", "city", "country_id", "created_at", "phone", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["address", "186 Ottis Stravenue"], ["city", "West Leilanifort"], ["country_id", 1], ["created_at", Wed, 05 Feb 2014 15:29:22 UTC +00:00], ["phone", "811-726-2804 x3199"], ["updated_at", Wed, 05 Feb 2014 15:29:22 UTC +00:00], ["zipcode", 89990]]
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE ("addresses"."zipcode" = 89990 AND "addresses"."id" != 1) LIMIT 1
+  [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE ("addresses"."zipcode" = 89990 AND "addresses"."id" != 1) LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mCountry Exists (0.1ms)[0m  SELECT 1 AS one FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "countries" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Wed, 05 Feb 2014 15:29:22 UTC +00:00], ["name", "Ukraine"], ["updated_at", Wed, 05 Feb 2014 15:29:22 UTC +00:00]]
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 89990 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "addresses" ("address", "city", "country_id", "created_at", "phone", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["address", "186 Ottis Stravenue"], ["city", "West Leilanifort"], ["country_id", 1], ["created_at", Wed, 05 Feb 2014 15:29:22 UTC +00:00], ["phone", "811-726-2804 x3199"], ["updated_at", Wed, 05 Feb 2014 15:29:22 UTC +00:00], ["zipcode", 89990]]
+  [1m[35mAddress Load (0.1ms)[0m  SELECT "addresses".* FROM "addresses" ORDER BY "addresses"."id" ASC LIMIT 1
+  [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 89990 LIMIT 1[0m
+  [1m[35mAddress Exists (0.1ms)[0m  SELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 89990 LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mCountry Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "countries" WHERE "countries"."name" = 'Ukraine' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "countries" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["name", "Ukraine"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mAddress Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "addresses" WHERE "addresses"."zipcode" = 89990 LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "addresses" ("address", "city", "country_id", "created_at", "phone", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?)  [["address", "186 Ottis Stravenue"], ["city", "West Leilanifort"], ["country_id", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["phone", "811-726-2804 x3199"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["zipcode", 89990]]
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35mBook Exists (0.2ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Load (0.2ms)[0m  [1mSELECT "books".* FROM "books" ORDER BY "books"."id" ASC LIMIT 1[0m
+  [1m[35mBook Exists (0.2ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" IS NULL AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE ("books"."title" IS NULL AND "books"."id" != 1) LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36m (0.9ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "books" ("books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["books_in_stock", 3], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE ("books"."title" = 'BookTitle' AND "books"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "books" SET "books_in_stock" = ?, "updated_at" = ? WHERE "books"."id" = 1  [["books_in_stock", 2], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Dima"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'BookTitle' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "BookTitle"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "authors" WHERE (id = 1)
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Jerry"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35mBook Exists (0.2ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'Barabushka' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "Barabushka"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'Babushka' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "Babushka"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Jerry"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'Barabushka' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "Barabushka"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'Babushka' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "Babushka"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Jerry"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'Barabushka' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "Barabushka"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'Babushka' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "Babushka"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Jerry"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'Barabushka' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "Barabushka"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'Babushka' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "Babushka"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Jerry"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'Barabushka' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "Barabushka"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35mBook Exists (0.1ms)[0m  SELECT 1 AS one FROM "books" WHERE "books"."title" = 'Babushka' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "Babushka"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "authors" ("biography", "created_at", "first_name", "id", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["biography", "k7k"], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["first_name", "Jerry"], ["id", 1], ["last_name", "Deckow"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'Barabushka' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "Barabushka"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36mBook Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "books" WHERE "books"."title" = 'Babushka' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "books" ("author_id", "books_in_stock", "created_at", "description", "price", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["author_id", 1], ["books_in_stock", 1], ["created_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00], ["description", "BookDescription"], ["price", 9.99], ["title", "Babushka"], ["updated_at", Wed, 05 Feb 2014 15:29:23 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "books" WHERE "books"."author_id" = 1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
