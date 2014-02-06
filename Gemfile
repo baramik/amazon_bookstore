@@ -30,14 +30,15 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'pg'
-
+gem 'rails_admin'
+gem 'cancan'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 group :development, :test do
-		gem 'cancan'
+
     gem 'rspec-rails'
     gem 'factory_girl_rails'
 end

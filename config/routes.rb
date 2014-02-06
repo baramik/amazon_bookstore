@@ -1,11 +1,27 @@
 Models::Application.routes.draw do
- resources :books, path_names: {show: "sho", new: "nu"} do
-   member do
-     get 'show'
-     get 'new'
-   end
- end
- root to: "books#index"
+  resources :shipments
+
+  resources :raitings
+
+  resources :order_items
+
+  resources :orders
+
+  resources :customers
+
+  resources :credit_cards
+
+  resources :countries
+
+  resources :categories
+
+  resources :authors
+
+  resources :addresses
+
+  resources :books
+
+  root to: "books#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

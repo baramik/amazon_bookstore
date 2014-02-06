@@ -1,5 +1,15 @@
 require 'spec_helper'
 
-describe "order_items/new.html.haml" do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe "order_items/new" do
+  before(:each) do
+    assign(:order_item, stub_model(OrderItem).as_new_record)
+  end
+
+  it "renders new order_item form" do
+    render
+
+    # Run the generator again with the --webrat flag if you want to use webrat matchers
+    assert_select "form[action=?][method=?]", order_items_path, "post" do
+    end
+  end
 end
