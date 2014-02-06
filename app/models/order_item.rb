@@ -2,22 +2,32 @@ class OrderItem < ActiveRecord::Base
 	belongs_to :book
 	belongs_to :order
 
-	validates :price, :quiantity, presence: true 
-	validates :quiantity, numericality: {only_integer: true}
+	validates :price, :quantity, presence: true
+	validates :quantity, numericality: {only_integer: true}
 
-	def order_item_total_price
+  before_save :count_total_price
 
+	def count_total_price
+    self.price = (book.price * self.quantity).to_f
   end
 
-
   def decrease_quantity num
-		self.quiantity -= num
+		self.quantity -= num
 		save!
 	end
 
-	def increase_count num
-		self.quiantity += num
+	def increase_quantity num
+		self.quantity += num
 		save!
- 	end
+  end
+
+  def return_to_stock
+
+  end
+
+  def take_from_stock num
+    book.books_in_stock -= num
+  end
+
 end
 

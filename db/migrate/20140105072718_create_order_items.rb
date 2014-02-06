@@ -2,7 +2,7 @@ class CreateOrderItems < ActiveRecord::Migration
   def up
     create_table :order_items do |t|
       t.float :price
-      t.integer :quiantity
+      t.integer :quantity
       t.references :order, index: true
       t.references :book, index: true
       

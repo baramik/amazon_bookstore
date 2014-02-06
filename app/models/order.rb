@@ -10,8 +10,8 @@ class Order < ActiveRecord::Base
   	validates :completed_date, numericality: {only_integer: true} 
   	validates :state, inclusion: {in: %W(inprogress deslined postponed completed)}, presence: true
 
-  	after_save :total_price_count
-
+  	#after_save :total_price_count
+    #before_save :total_price_count
   	scope :all_deslined, -> {where state: 'deslined'}
   	scope :all_completed, -> {where state: 'completed'}
   	scope :all_postponed, -> {where state: 'postponed'}
@@ -22,7 +22,7 @@ class Order < ActiveRecord::Base
   	#end
 
     def total_price_count
-        self.joins(:order_items).where('orders.id = ?', self.id).sum('price').to_f
+        #self.joins(:order_items).where('orders.id = ?', self.id).sum('price').to_f
     end
 
   	def set_deslined

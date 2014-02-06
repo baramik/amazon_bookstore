@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :book do
     title "BookTitle"
     description "BookDescription"
-    price "9.99"
-    books_in_stock 1
+    price 10.00
+    books_in_stock 500
   end
 end

@@ -13,12 +13,12 @@ class Book < ActiveRecord::Base
 	end
 
 	def decrease_in_stock(num)
-		self.books_in_stock += num
+		self.books_in_stock -= num
 		save!
 	end
 
 	def increase_in_stock(num)
-		self.books_in_stock -= num
+		self.books_in_stock += num
 		save!
 	end
 

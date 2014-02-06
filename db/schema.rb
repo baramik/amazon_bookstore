@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140205205354) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "addresses", force: true do |t|
     t.string   "address"
     t.integer  "zipcode"
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140205205354) do
     t.datetime "updated_at"
   end
 
-  add_index "addresses", ["country_id"], name: "index_addresses_on_country_id"
+  add_index "addresses", ["country_id"], name: "index_addresses_on_country_id", using: :btree
 
   create_table "authors", force: true do |t|
     t.string   "first_name"
@@ -45,8 +48,8 @@ ActiveRecord::Schema.define(version: 20140205205354) do
     t.datetime "updated_at"
   end
 
-  add_index "books", ["author_id"], name: "index_books_on_author_id"
-  add_index "books", ["category_id"], name: "index_books_on_category_id"
+  add_index "books", ["author_id"], name: "index_books_on_author_id", using: :btree
+  add_index "books", ["category_id"], name: "index_books_on_category_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "title"
@@ -72,7 +75,7 @@ ActiveRecord::Schema.define(version: 20140205205354) do
     t.datetime "updated_at"
   end
 
-  add_index "credit_cards", ["customer_id"], name: "index_credit_cards_on_customer_id"
+  add_index "credit_cards", ["customer_id"], name: "index_credit_cards_on_customer_id", using: :btree
 
   create_table "customers", force: true do |t|
     t.string   "email"
@@ -84,20 +87,20 @@ ActiveRecord::Schema.define(version: 20140205205354) do
     t.datetime "updated_at"
   end
 
-  add_index "customers", ["credit_card_id"], name: "index_customers_on_credit_card_id"
-  add_index "customers", ["order_id"], name: "index_customers_on_order_id"
+  add_index "customers", ["credit_card_id"], name: "index_customers_on_credit_card_id", using: :btree
+  add_index "customers", ["order_id"], name: "index_customers_on_order_id", using: :btree
 
   create_table "order_items", force: true do |t|
     t.float    "price"
-    t.integer  "quiantity"
+    t.integer  "quantity"
     t.integer  "order_id"
     t.integer  "book_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "order_items", ["book_id"], name: "index_order_items_on_book_id"
-  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
+  add_index "order_items", ["book_id"], name: "index_order_items_on_book_id", using: :btree
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
 
   create_table "orders", force: true do |t|
     t.float    "total_price"
@@ -111,10 +114,10 @@ ActiveRecord::Schema.define(version: 20140205205354) do
     t.datetime "updated_at"
   end
 
-  add_index "orders", ["billing_address_id"], name: "index_orders_on_billing_address_id"
-  add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id"
-  add_index "orders", ["orders_id"], name: "index_orders_on_orders_id"
-  add_index "orders", ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
+  add_index "orders", ["billing_address_id"], name: "index_orders_on_billing_address_id", using: :btree
+  add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id", using: :btree
+  add_index "orders", ["orders_id"], name: "index_orders_on_orders_id", using: :btree
+  add_index "orders", ["shipping_address_id"], name: "index_orders_on_shipping_address_id", using: :btree
 
   create_table "raitings", force: true do |t|
     t.text     "review"
@@ -125,8 +128,8 @@ ActiveRecord::Schema.define(version: 20140205205354) do
     t.datetime "updated_at"
   end
 
-  add_index "raitings", ["book_id"], name: "index_raitings_on_book_id"
-  add_index "raitings", ["customer_id"], name: "index_raitings_on_customer_id"
+  add_index "raitings", ["book_id"], name: "index_raitings_on_book_id", using: :btree
+  add_index "raitings", ["customer_id"], name: "index_raitings_on_customer_id", using: :btree
 
   create_table "shipments", force: true do |t|
     t.string   "name"

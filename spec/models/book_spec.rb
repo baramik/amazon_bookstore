@@ -13,7 +13,7 @@ describe Book do
   context 'associations' do
     it{expect(book).to belong_to(:category) }
     it{expect(book).to belong_to(:author) }
-    it{expect(book).to have_and_belong_to_many(:order_items)}
+    it{expect(book).to have_many(:order_items)}
   end
 
   before {@author = FactoryGirl.create(:author, id: 1, first_name: 'Dima')}
@@ -34,7 +34,7 @@ describe Book do
   end
 
   context '#increase_in_stock' do
-      it{expect(books.increase_in_stock(1)).to change(books.books_in_stock).from(3).to(4)}
+      it{expect{books.increase_in_stock(1)}.to change{books.books_in_stock}.from(3).to(4)}
   end
 
   context '#book_instock_count' do
