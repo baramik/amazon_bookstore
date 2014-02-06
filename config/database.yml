@@ -1,7 +1,7 @@
 development:
     adapter: postgresql
     encoding: unicode
-    database: Amazon_developement
+    database: Amazon_development
     pool: 5
     username: Apple
     password: baramik
