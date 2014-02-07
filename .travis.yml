@@ -12,9 +12,6 @@ notifications:
     on_failure: change
 
 before_script:
-     - psql -c "CREATE ROLE Apple WITH SUPERUSER;"
-     - psql -c "CREATE DATABASE Amazon_test;" -U Apple
-     - psql -c "CREATE DATABASE Amazon_development;" -U Apple
-     - psql -c "GRANT ALL PRIVILEGES ON DATABASE Amazon_test TO Apple"
-     - psql -c "GRANT ALL PRIVILEGES ON DATABASE Amazon_development TO Apple"
+     - psql -c "CREATE DATABASE Amazon_development;" -U postgres
+
 
