@@ -11,6 +11,9 @@ notifications:
     on_success: change
     on_failure: change
 
+script: bundle exec rspec spec
 before_script:
-     - psql -c 'create database Amazon_test;' -U Apple
-     - psql -c "CREATE USER Apple WITH PASSWORD '';" -U Apple
+     - psql -c 'CREATE USER Apple WITH PASSWORD '';' -U postgres
+     - psql -c 'ALTER ROLE Apple SUPERUSER;' -U postgres
+     - psql -c 'create database Amazon_test;' -U postgres
+
