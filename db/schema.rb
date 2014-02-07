@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20140207133038) do
   add_index "credit_cards", ["customer_id"], name: "index_credit_cards_on_customer_id", using: :btree
 
   create_table "customers", force: true do |t|
-    t.string   "email"
+    t.string   "email",                  default: "", null: false
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "credit_card_id"
