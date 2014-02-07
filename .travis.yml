@@ -12,6 +12,6 @@ notifications:
     on_failure: change
 
 before_script:
-      -psql -c 'CREATE USER Apple WITH PASSWORD;'
-      -psql -c 'ALTER ROLE Apple WITH superuser;'
-      - psql -c 'create database Amazon_test;' -U Apple
+     - psql -c 'CREATE USER Apple WITH PASSWORD;'
+     - psql -c 'ALTER ROLE Apple WITH superuser;'
+     - psql -c 'create database Amazon_test;' -U Apple
