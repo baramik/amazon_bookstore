@@ -3009,3 +3009,91 @@ Migrating to CreateShipments (20140205205354)
   [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140105072917')[0m
   [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140105073134')
   [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-07 12:46:12 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActionController::RoutingError (uninitialized constant ApplicationController):
+  app/controllers/books_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (8.5ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (11.6ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (131.2ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2014-02-07 12:53:04 +0200
+
+ActionController::RoutingError (uninitialized constant ApplicationController):
+  app/controllers/books_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.7ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (100.4ms)
+
+
+Started GET "/shipments" for 127.0.0.1 at 2014-02-07 12:53:19 +0200
+
+ActionController::RoutingError (uninitialized constant ApplicationController):
+  app/controllers/shipments_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.8ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (104.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-07 12:55:23 +0200
+
+ActionController::RoutingError (uninitialized constant ApplicationController):
+  app/controllers/books_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.0ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (108.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-07 12:59:55 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActionController::RoutingError (uninitialized constant ApplicationController):
+  app/controllers/books_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.9ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.2ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (150.8ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2014-02-07 13:00:08 +0200
+
+ActionController::RoutingError (uninitialized constant ApplicationController):
+  app/controllers/books_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.7ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Users/Apple/.rvm/gems/ruby-2.0.0-p247@ruby_garage/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (89.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-07 13:34:43 +0200
+Processing by BooksController#index as HTML
+  [1m[35mBook Load (25.2ms)[0m  SELECT "books".* FROM "books"
+  Rendered books/index.html.haml (28.0ms)
+Completed 200 OK in 155ms (Views: 27.5ms | ActiveRecord: 25.2ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2014-02-07 13:34:50 +0200
+Processing by BooksController#index as HTML
+  [1m[36mBook Load (0.3ms)[0m  [1mSELECT "books".* FROM "books"[0m
+  Rendered books/index.html.haml (1.3ms)
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.3ms)

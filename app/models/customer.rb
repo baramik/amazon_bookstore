@@ -3,7 +3,7 @@ class Customer < ActiveRecord::Base
 	has_many :credit_cards
 
 	validates :first_name, :last_name, presence: true
-  	validates :email, uniqueness: true
+  validates :email, uniqueness: true
 
   	def change_account_info
   		#edit account info such as(cr card, shipping_adress, billing address...etc)
