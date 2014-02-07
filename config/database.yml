@@ -12,7 +12,7 @@ test:
   database: Amazon_test
   pool: 5
   username: Apple
-  password: baramik
+  password: 
 
 production:
   adapter: postgresql
@@ -20,7 +20,7 @@ production:
   database: Amazon_production
   pool: 5
   username: Apple
-  password: baramik
+  password: 
 
 
 
