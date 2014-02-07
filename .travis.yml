@@ -1,0 +1,15 @@
+language: ruby
+
+
+rvm:
+  - 1.25.17
+
+notifications:
+  email:
+    recepients:
+      - baramik1989@gmail.com
+    on_success: change
+    on_failure: change
+
+before_script:
+      - psql -c 'create database Amazon_test;' -U postgres
