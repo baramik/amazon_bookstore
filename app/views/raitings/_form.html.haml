@@ -1,0 +1,10 @@
+= form_for @raiting do |f|
+  - if @raiting.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@raiting.errors.count, "error")} prohibited this raiting from being saved:"
+      %ul
+        - @raiting.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

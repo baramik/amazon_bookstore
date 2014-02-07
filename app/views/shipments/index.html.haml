@@ -1,0 +1,17 @@
+%h1 Listing shipments
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @shipments.each do |shipment|
+    %tr
+      %td= link_to 'Show', shipment
+      %td= link_to 'Edit', edit_shipment_path(shipment)
+      %td= link_to 'Destroy', shipment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Shipment', new_shipment_path
