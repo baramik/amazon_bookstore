@@ -1,7 +1,7 @@
 class CreateCustomers < ActiveRecord::Migration
   def up
     create_table :customers do |t|
-      t.string :email
+      t.string :email,              :null => false, :default => ""
       t.string :first_name
       t.string :last_name
       t.references :credit_card, index: true

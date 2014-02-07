@@ -1,4 +1,5 @@
 Models::Application.routes.draw do
+  devise_for :customers
   resources :shipments
   resources :raitings
   resources :order_items
