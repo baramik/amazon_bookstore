@@ -10,8 +10,14 @@ notifications:
       - baramik1989@gmail.com
     on_success: change
     on_failure: change
-
+env:
+  - DB=postgresql
+script: 
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec spec/
 before_script:
-     - psql -c "create database Amazon_test;" -U postgres
-     - psql -c "create database Amazon_development;" -U postgres
+  - psql -c 'create database Amazon_test' -U postgres
+
+# uncomment this line if your project needs to run something other than `rake`:
 
