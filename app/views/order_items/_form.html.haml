@@ -1,10 +1,20 @@
-= form_for @order_item do |f|
-  - if @order_item.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@order_item.errors.count, "error")} prohibited this order_item from being saved:"
-      %ul
-        - @order_item.errors.full_messages.each do |msg|
-          %li= msg
-
-  .actions
-    = f.submit 'Save'
+= form_for @order_item, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :price, :class => 'control-label'
+    .controls
+      = f.text_field :price, :class => 'text_field'
+  .control-group
+    = f.label :quantity, :class => 'control-label'
+    .controls
+      = f.text_field :quantity, :class => 'text_field'
+  .control-group
+    = f.label :order_id, :class => 'control-label'
+    .controls
+      = f.text_field :order_id, :class => 'text_field'
+  .control-group
+    = f.label :book_id, :class => 'control-label'
+    .controls
+      = f.text_field :book_id, :class => 'text_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), order_items_path, :class => 'btn'

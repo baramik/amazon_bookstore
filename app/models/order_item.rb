@@ -21,8 +21,8 @@ class OrderItem < ActiveRecord::Base
 		save!
   end
 
-  def return_to_stock
-
+  def return_to_stock num
+     book.books_in_stock += num
   end
 
   def take_from_stock num

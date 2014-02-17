@@ -16,32 +16,29 @@ describe Book do
     it{expect(book).to have_many(:order_items)}
   end
 
-  before {@author = FactoryGirl.create(:author, id: 1, first_name: 'Dima')}
-  context '#search_author' do
-    #let(:author) {FactoryGirl.create(:author, id: 1, first_name: 'Dima')}
-    it "searches author belongs this book belongs to" do
-      book1 = FactoryGirl.create(:book, author_id: @author.id)
-      search_result = book1.search_author
-      expect(search_result).not_to be_empty
-    end
+  context '.book_info' do
+    let(:author) {FactoryGirl.create(:author, id: 1, first_name: 'Dima')}
+    let(:book){FactoryGirl.create(:book, author_id: 1, category_id: 1)}
+    let(:category){FactoryGirl.create(:category, id: 1)}
+    let(:search_result){search_result = book.book_info}
+      xit "returns detailed book info" do
+          expect{search_result.first_name}.not_to be_empty
+      end
+
   end
 
-  let(:books){FactoryGirl.create(:book, books_in_stock: 3)}
-  context '#decrease_in_stock' do
+  context '.decrease_in_stock' do
+    let(:book1){FactoryGirl.create(:book, title: "Aaa", books_in_stock: 4)}
     it 'decreases books quantity by n books' do
-
+      expect{book1.decrease_in_stock(1)}.to change{book1.books_in_stock}.from(4).to(3)
     end
   end
 
-  context '#increase_in_stock' do
-      it{expect{books.increase_in_stock(1)}.to change{books.books_in_stock}.from(3).to(4)}
+  context '.increase_in_stock' do
+    let(:book2){FactoryGirl.create(:book, title: "Bbb", books_in_stock: 3)}
+    it{expect{book2.increase_in_stock(1)}.to change{book2.books_in_stock}.from(3).to(4)}
   end
 
-  context '#book_instock_count' do
-
-  end
-
-  context '#get_raiting' do
-
+  context '.get_raiting' do
   end
 end

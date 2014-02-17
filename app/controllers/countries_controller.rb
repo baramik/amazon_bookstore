@@ -14,7 +14,6 @@ class CountriesController < ApplicationController
 
   # GET /countries/new
   def new
-    @country = Country.new
   end
 
   # GET /countries/1/edit
@@ -24,41 +23,16 @@ class CountriesController < ApplicationController
   # POST /countries
   # POST /countries.json
   def create
-    @country = Country.new(country_params)
-
-    respond_to do |format|
-      if @country.save
-        format.html { redirect_to @country, notice: 'Country was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @country }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @country.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /countries/1
   # PATCH/PUT /countries/1.json
   def update
-    respond_to do |format|
-      if @country.update(country_params)
-        format.html { redirect_to @country, notice: 'Country was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @country.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # DELETE /countries/1
   # DELETE /countries/1.json
   def destroy
-    @country.destroy
-    respond_to do |format|
-      format.html { redirect_to countries_url }
-      format.json { head :no_content }
-    end
   end
 
   private

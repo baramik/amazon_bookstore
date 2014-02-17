@@ -1,7 +1,4 @@
-%h1 Editing order_item
-
-= render 'form'
-
-= link_to 'Show', @order_item
-\|
-= link_to 'Back', order_items_path
+- model_class = OrderItem
+.page-header
+  %h1=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+= render :partial => "form"

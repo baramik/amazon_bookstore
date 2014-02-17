@@ -1,17 +1,27 @@
-%h1 Listing raitings
-
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @raitings.each do |raiting|
+- model_class = Raiting
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+%table.table.table-striped
+  %thead
     %tr
-      %td= link_to 'Show', raiting
-      %td= link_to 'Edit', edit_raiting_path(raiting)
-      %td= link_to 'Destroy', raiting, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:review)
+      %th= model_class.human_attribute_name(:raiting_number)
+      %th= model_class.human_attribute_name(:book_id)
+      %th= model_class.human_attribute_name(:customer_id)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @raitings.each do |raiting|
+      %tr
+        %td= link_to raiting.id, raiting_path(raiting)
+        %td= raiting.review
+        %td= raiting.raiting_number
+        %td= raiting.book_id
+        %td= raiting.customer_id
+        %td=l raiting.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_raiting_path(raiting), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), raiting_path(raiting), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 
-%br
-
-= link_to 'New Raiting', new_raiting_path
+= link_to t('.new', :default => t("helpers.links.new")), new_raiting_path, :class => 'btn btn-primary'

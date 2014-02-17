@@ -1,10 +1,32 @@
-= form_for @order do |f|
-  - if @order.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@order.errors.count, "error")} prohibited this order from being saved:"
-      %ul
-        - @order.errors.full_messages.each do |msg|
-          %li= msg
-
-  .actions
-    = f.submit 'Save'
+= form_for @order, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :total_price, :class => 'control-label'
+    .controls
+      = f.text_field :total_price, :class => 'text_field'
+  .control-group
+    = f.label :completed_date, :class => 'control-label'
+    .controls
+      = f.text_field :completed_date, :class => 'text_field'
+  .control-group
+    = f.label :state, :class => 'control-label'
+    .controls
+      = f.text_field :state, :class => 'text_field'
+  .control-group
+    = f.label :credit_card_id, :class => 'control-label'
+    .controls
+      = f.text_field :credit_card_id, :class => 'text_field'
+  .control-group
+    = f.label :orders_id, :class => 'control-label'
+    .controls
+      = f.text_field :orders_id, :class => 'text_field'
+  .control-group
+    = f.label :billing_address_id, :class => 'control-label'
+    .controls
+      = f.text_field :billing_address_id, :class => 'text_field'
+  .control-group
+    = f.label :shipping_address_id, :class => 'control-label'
+    .controls
+      = f.text_field :shipping_address_id, :class => 'text_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), orders_path, :class => 'btn'

@@ -1,6 +1,37 @@
-%p#notice= notice
+- model_class = CreditCard
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.titleize
 
+%p
+  %strong= model_class.human_attribute_name(:number) + ':'
+  %br
+  = @credit_card.number
+%p
+  %strong= model_class.human_attribute_name(:CVV) + ':'
+  %br
+  = @credit_card.CVV
+%p
+  %strong= model_class.human_attribute_name(:expiration_month) + ':'
+  %br
+  = @credit_card.expiration_month
+%p
+  %strong= model_class.human_attribute_name(:expiration_year) + ':'
+  %br
+  = @credit_card.expiration_year
+%p
+  %strong= model_class.human_attribute_name(:first_name) + ':'
+  %br
+  = @credit_card.first_name
+%p
+  %strong= model_class.human_attribute_name(:last_name) + ':'
+  %br
+  = @credit_card.last_name
+%p
+  %strong= model_class.human_attribute_name(:customer_id) + ':'
+  %br
+  = @credit_card.customer_id
 
-= link_to 'Edit', edit_credit_card_path(@credit_card)
-\|
-= link_to 'Back', credit_cards_path
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), credit_cards_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_credit_card_path(@credit_card), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), credit_card_path(@credit_card), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

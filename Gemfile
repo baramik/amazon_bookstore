@@ -4,11 +4,17 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
 
-
+gem "mini_magick"
+gem 'omniauth-facebook'
+gem 'kaminari'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'carrierwave'
+gem 'html2haml'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem "therubyracer"
+gem "less-rails"
 gem 'haml-rails'
 gem 'devise'
 # Use Uglifier as compressor for JavaScript assets

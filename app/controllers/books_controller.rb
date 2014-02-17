@@ -1,6 +1,5 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-
   # GET /books
   # GET /books.json
   def index
@@ -14,7 +13,6 @@ class BooksController < ApplicationController
 
   # GET /books/new
   def new
-    @book = Book.new
   end
 
   # GET /books/1/edit
@@ -40,15 +38,6 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    respond_to do |format|
-      if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # DELETE /books/1

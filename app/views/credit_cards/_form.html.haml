@@ -1,10 +1,32 @@
-= form_for @credit_card do |f|
-  - if @credit_card.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@credit_card.errors.count, "error")} prohibited this credit_card from being saved:"
-      %ul
-        - @credit_card.errors.full_messages.each do |msg|
-          %li= msg
-
-  .actions
-    = f.submit 'Save'
+= form_for @credit_card, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :number, :class => 'control-label'
+    .controls
+      = f.text_field :number, :class => 'text_field'
+  .control-group
+    = f.label :CVV, :class => 'control-label'
+    .controls
+      = f.text_field :CVV, :class => 'text_field'
+  .control-group
+    = f.label :expiration_month, :class => 'control-label'
+    .controls
+      = f.text_field :expiration_month, :class => 'text_field'
+  .control-group
+    = f.label :expiration_year, :class => 'control-label'
+    .controls
+      = f.text_field :expiration_year, :class => 'text_field'
+  .control-group
+    = f.label :first_name, :class => 'control-label'
+    .controls
+      = f.text_field :first_name, :class => 'text_field'
+  .control-group
+    = f.label :last_name, :class => 'control-label'
+    .controls
+      = f.text_field :last_name, :class => 'text_field'
+  .control-group
+    = f.label :customer_id, :class => 'control-label'
+    .controls
+      = f.text_field :customer_id, :class => 'text_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), credit_cards_path, :class => 'btn'

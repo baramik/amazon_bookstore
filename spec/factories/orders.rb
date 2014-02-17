@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :order do
     total_price 40.00
-    completed_date Date.today
-    state 'inprogress'
+    completed_date DateTime.now
+    state 'in_progress'
   end
 end

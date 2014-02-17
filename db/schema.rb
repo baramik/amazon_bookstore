@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207133038) do
+ActiveRecord::Schema.define(version: 20140217231822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20140207133038) do
   end
 
   create_table "credit_cards", force: true do |t|
-    t.integer  "number"
+    t.string   "number"
     t.integer  "CVV"
     t.integer  "expiration_month"
     t.integer  "expiration_year"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20140207133038) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "admin"
   end
 
   add_index "customers", ["credit_card_id"], name: "index_customers_on_credit_card_id", using: :btree
@@ -115,19 +116,19 @@ ActiveRecord::Schema.define(version: 20140207133038) do
 
   create_table "orders", force: true do |t|
     t.float    "total_price"
-    t.date     "completed_date"
+    t.datetime "completed_date"
     t.string   "state"
     t.integer  "credit_card_id"
-    t.integer  "orders_id"
     t.integer  "billing_address_id"
     t.integer  "shipping_address_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "customer_id"
   end
 
   add_index "orders", ["billing_address_id"], name: "index_orders_on_billing_address_id", using: :btree
   add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id", using: :btree
-  add_index "orders", ["orders_id"], name: "index_orders_on_orders_id", using: :btree
+  add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
   add_index "orders", ["shipping_address_id"], name: "index_orders_on_shipping_address_id", using: :btree
 
   create_table "raitings", force: true do |t|
@@ -137,6 +138,7 @@ ActiveRecord::Schema.define(version: 20140207133038) do
     t.integer  "customer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "status"
   end
 
   add_index "raitings", ["book_id"], name: "index_raitings_on_book_id", using: :btree
@@ -147,6 +149,9 @@ ActiveRecord::Schema.define(version: 20140207133038) do
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
+
+  add_index "shipments", ["order_id"], name: "index_shipments_on_order_id", using: :btree
 
 end

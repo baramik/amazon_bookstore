@@ -1,6 +1,12 @@
 Models::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   devise_for :customers
+  devise_scope :customers do
+    get 'log_in' => 'devise/sessions#new'
+    get 'log_out' => 'devise/sessions#destroy'
+  end
+
   resources :shipments
   resources :raitings
   resources :order_items
@@ -12,6 +18,7 @@ Models::Application.routes.draw do
   resources :authors
   resources :addresses
   resources :books
+
   root "books#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

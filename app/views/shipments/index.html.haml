@@ -1,17 +1,23 @@
-%h1 Listing shipments
-
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @shipments.each do |shipment|
+- model_class = Shipment
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+%table.table.table-striped
+  %thead
     %tr
-      %td= link_to 'Show', shipment
-      %td= link_to 'Edit', edit_shipment_path(shipment)
-      %td= link_to 'Destroy', shipment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:price)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @shipments.each do |shipment|
+      %tr
+        %td= link_to shipment.id, shipment_path(shipment)
+        %td= shipment.name
+        %td= shipment.price
+        %td=l shipment.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_shipment_path(shipment), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), shipment_path(shipment), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 
-%br
-
-= link_to 'New Shipment', new_shipment_path
+= link_to t('.new', :default => t("helpers.links.new")), new_shipment_path, :class => 'btn btn-primary'
