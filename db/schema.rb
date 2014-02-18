@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217231822) do
+ActiveRecord::Schema.define(version: 20140218001109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,9 +25,11 @@ ActiveRecord::Schema.define(version: 20140217231822) do
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
 
   add_index "addresses", ["country_id"], name: "index_addresses_on_country_id", using: :btree
+  add_index "addresses", ["order_id"], name: "index_addresses_on_order_id", using: :btree
 
   create_table "authors", force: true do |t|
     t.string   "first_name"
@@ -73,9 +75,11 @@ ActiveRecord::Schema.define(version: 20140217231822) do
     t.integer  "customer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
 
   add_index "credit_cards", ["customer_id"], name: "index_credit_cards_on_customer_id", using: :btree
+  add_index "credit_cards", ["order_id"], name: "index_credit_cards_on_order_id", using: :btree
 
   create_table "customers", force: true do |t|
     t.string   "email",                  default: "", null: false

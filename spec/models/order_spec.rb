@@ -10,8 +10,8 @@ describe Order do
   context 'Associations' do
     it {expect(order).to belong_to(:customer)}
     it {expect(order).to have_one(:credit_card)}
-    it {expect(order).to have_one(:ship_address).class_name('Address')}
-    it {expect(order).to have_one(:bill_address).class_name('Address')}
+    it {expect(order).to have_one(:shipping_address).class_name('Address')}
+    it {expect(order).to have_one(:billing_address).class_name('Address')}
     it {expect(order).to have_many(:order_items).dependent(:destroy)}
     it {expect(order).to have_one(:shipment)}
   end

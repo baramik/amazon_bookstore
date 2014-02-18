@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :raiting do
     review "dfasdga"
-    rating_number 5
+    raiting_number 5
     status true
   end
 end
